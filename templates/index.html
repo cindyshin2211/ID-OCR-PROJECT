@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Card OCR</title>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+<body>
+    <h1>신분증 인식</h1>
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">upload</button>
+    </form>
+
+    {% if extracted_text %}
+
+        <img src="{{ filepath }}" alt="Uploaded Image" style="max-width: 400px;">
+        <ul>
+            <li><strong>이름:</strong> {{ extracted_text.name }}</li>
+            <li><strong>주민등록번호:</strong> {{ extracted_text.id_number }}</li>
+            <li><strong>발급일자:</strong> {{ extracted_text.issue_date }}</li>
+        </ul>
+    {% endif %}
+</body>
+</html>
